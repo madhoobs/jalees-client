@@ -31,7 +31,13 @@
 
 This project is built using MERN stack.
 
-![Tech](https://skillicons.dev/icons?i=html,css,js,mongo,express,react,nodejs,vite,figma)
+<div align="center">
+
+![Tech](https://skillicons.dev/icons?i=html,css,js) <br/>
+![Stack](https://skillicons.dev/icons?i=mongo,express,react,nodejs) <br/>
+![Tech](https://skillicons.dev/icons?i=vite,vscode,figma)
+
+</div>
 
 ## Credits
 
