@@ -35,7 +35,7 @@ This project is built using MERN stack.
 
 ![Tech](https://skillicons.dev/icons?i=html,css,js) <br/>
 ![Stack](https://skillicons.dev/icons?i=mongo,express,react,nodejs) <br/>
-![Tech](https://skillicons.dev/icons?i=vite,vscode,figma)
+![Tech](https://skillicons.dev/icons?i=mui,vite,vscode,figma)
 
 </div>
 
