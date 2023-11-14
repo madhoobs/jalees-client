@@ -13,6 +13,7 @@
   <a href="#key-features">Key Features</a> •
   <a href="#erd">ERD</a> •
   <!-- <a href="#how-to-use">How To Use</a> • -->
+  <a href="#future-work">Future Work</a> •
   <a href="#credits">Credits</a>
 </p>
 
@@ -38,6 +39,12 @@ This project is built using MERN stack.
 ![Tech](https://skillicons.dev/icons?i=mui,vite,vscode,figma)
 
 </div>
+
+## Future Work
+
+- Develop mobile app version
+- Translate to Arabic
+- Add Scheduling: avoid conflicts in time when booking sessions
 
 ## Credits
 
