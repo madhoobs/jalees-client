@@ -1,12 +1,12 @@
 import * as React from 'react'
-import Grid from '@mui/material/Grid'
-import Button from '@mui/material/Button'
-import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
-import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
-import Avatar from '@mui/material/Avatar'
-import Typography from '@mui/material/Typography'
+import {
+  Container,
+  Box,
+  Button,
+  Typography,
+  Avatar,
+  Divider
+} from '@mui/material'
 import CaregiverRating from '../components/CaregiverRating'
 import { useState, useEffect } from 'react'
 import { NavLink, useSearchParams, useNavigate } from 'react-router-dom'
@@ -25,26 +25,41 @@ const Caregiver = () => {
     handleCaregiver()
   })
 
+  const onClick = (e) => {
+    // Navigating to selected Caregiver page
+    navigate('/session/new')
+  }
+
   return caregiver ? (
-    <Grid item key={caregiver._id} xs={12} sm={6} md={4}>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label={caregiver.name}>
-              {caregiver.name.charAt(0)}
-            </Avatar>
-          }
-          title={caregiver.name}
-          subheader="Caregiver"
-        />
-        <CaregiverRating caregiver={caregiver._id} />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {caregiver.bio}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Grid>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh'
+      }}
+    >
+      <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
+        <Typography variant="h4" component="h1" gutterBottom>
+          <Avatar aria-label={caregiver.name}>
+            {caregiver.name.charAt(0)}
+          </Avatar>
+          {caregiver.name}
+          <CaregiverRating caregiver={caregiver._id} />
+        </Typography>
+        <Typography variant="h5" component="h2" gutterBottom>
+          {caregiver.bio}
+        </Typography>
+        <Divider sx={{ margin: '25px' }} />
+        <Typography component="p" gutterBottom>
+          Do you want {caregiver.name} to take care of your child? Connect with
+          her now!
+        </Typography>
+        <br />
+        <Button variant="contained" size="large" onClick={onClick}>
+          Book a Session
+        </Button>
+      </Container>
+    </Box>
   ) : null
 }
 
