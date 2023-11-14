@@ -10,7 +10,7 @@ const theme = createTheme({
       main: '#FF5A60'
     },
     secondary: {
-      main: '#E31C5F' //orange-ish color
+      main: '#E31C5F'
     }
   }
 })
