@@ -57,11 +57,12 @@ const Register = () => {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 4,
+          marginBottom: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center'

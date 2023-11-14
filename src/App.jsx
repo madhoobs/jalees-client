@@ -10,6 +10,7 @@ import Caregiver from './pages/Caregiver.jsx'
 import Profile from './pages/Profile.jsx'
 import { CheckSession } from './services/Auth'
 import './App.css'
+import NewSessionForm from './pages/NewSessionForm.jsx'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/register" element={<Register setUser={setUser} />} />
           <Route path="/account" element={<Profile user={user} />} />
           <Route path="/caregiver" element={<Caregiver />} />
+          <Route path="/session/new" element={<NewSessionForm user={user} />} />
         </Routes>
       </main>
       <Footer />

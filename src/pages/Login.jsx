@@ -57,12 +57,16 @@ const Login = ({ setUser }) => {
   }, [formValues])
 
   return (
-    <Grid container component="main" sx={{ height: '100vh' }}>
+    <Grid
+      container
+      component="main"
+      sx={{ height: { xs: '80vh', md: '100vh' } }}
+    >
       <CssBaseline />
       <Grid item xs={12} sm={8} md={6} component={Paper} square>
         <Box
           sx={{
-            my: 8,
+            my: { xs: 0, md: 10 },
             mx: 4,
             display: 'flex',
             flexDirection: 'column',
@@ -150,7 +154,8 @@ const Login = ({ setUser }) => {
         sm={4}
         md={6}
         sx={{
-          backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+          backgroundImage:
+            'url(https://images.squarespace-cdn.com/content/v1/64659aaee3191d1432a3ed2d/1684380334908-90CEW2JPZKQ4OU22FEE1/Bez+tytu%C5%82u+%282100%C3%971000+px%29+%282100%C3%971500+px%29+copy+2.png)',
           backgroundRepeat: 'no-repeat',
           backgroundColor: (t) =>
             t.palette.mode === 'light'

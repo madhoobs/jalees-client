@@ -11,7 +11,7 @@ import CaregiverRating from '../components/CaregiverRating'
 
 const CaregiverCard = ({ caregiver, onClick }) => {
   return (
-    <Grid item key={caregiver._id} xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={4}>
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           onClick={onClick}

@@ -35,32 +35,30 @@ const Home = () => {
         <Box
           sx={{
             bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6
+            pt: { xs: 0, md: 10 }
           }}
         >
           <Container maxWidth="sm">
             <Typography
               component="h1"
-              variant="h2"
+              variant="h4"
               align="center"
               color="text.primary"
               gutterBottom
             >
-              Jalees
+              Stay Mindful with Jalees!
             </Typography>
             <Typography
-              variant="h5"
+              variant="p"
               align="center"
               color="text.secondary"
               paragraph
             >
-              Your child&apos;s wellbeing is our priority,
-              <br />
-              and your peace of mind is our commitment!
+              Our experienced caregivers will take care of your child&apos;s
+              wellbeing
             </Typography>
             <Stack
-              sx={{ pt: 4 }}
+              sx={{ pt: { xs: 2, md: 4 } }}
               direction="row"
               spacing={2}
               justifyContent="center"
@@ -71,7 +69,11 @@ const Home = () => {
           {/* End hero unit */}
           <Grid container spacing={4}>
             {caregivers.map((caregiver) => (
-              <CaregiverCard caregiver={caregiver} onClick={onClick} />
+              <CaregiverCard
+                key={caregiver._id}
+                caregiver={caregiver}
+                onClick={onClick}
+              />
             ))}
           </Grid>
         </Container>
