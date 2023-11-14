@@ -8,27 +8,14 @@ import CardActions from '@mui/material/CardActions'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import CaregiverRating from '../components/CaregiverRating'
-import { useState, useEffect } from 'react'
-import { NavLink, useSearchParams, useNavigate } from 'react-router-dom'
-import { GetCaregiver } from '../services/Caregiver'
 
-const Caregiver = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [caregiver, setCaregiver] = useState(null)
-  let navigate = useNavigate()
-
-  useEffect(() => {
-    const handleCaregiver = async () => {
-      const data = await GetCaregiver(searchParams.get('id'))
-      setCaregiver(data)
-    }
-    handleCaregiver()
-  })
-
-  return caregiver ? (
+const CaregiverCard = ({ caregiver, onClick }) => {
+  return (
     <Grid item key={caregiver._id} xs={12} sm={6} md={4}>
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
+          onClick={onClick}
+          id={caregiver._id}
           avatar={
             <Avatar aria-label={caregiver.name}>
               {caregiver.name.charAt(0)}
@@ -43,9 +30,16 @@ const Caregiver = () => {
             {caregiver.bio}
           </Typography>
         </CardContent>
+        <CardActions disableSpacing>
+          <CardActions>
+            <Button size="small" onClick={onClick} id={caregiver._id}>
+              Book a Session
+            </Button>
+          </CardActions>
+        </CardActions>
       </Card>
     </Grid>
-  ) : null
+  )
 }
 
-export default Caregiver
+export default CaregiverCard

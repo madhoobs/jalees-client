@@ -31,7 +31,6 @@ const NavBar = ({ user, handleLogOut }) => {
   }
 
   const handleClick = (event) => {
-    console.log(event.target.innerText)
     if (event.target.innerText === 'Account') {
       navigate('/account')
     } else if (event.target.innerText === 'My Dependants') {
