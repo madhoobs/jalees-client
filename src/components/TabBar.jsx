@@ -18,7 +18,15 @@ const TabBar = () => {
     ref.current.ownerDocument.body.scrollTop = 0
   }, [])
   return (
-    <Box sx={{ pb: 7 }} ref={ref}>
+    <Box
+      sx={{
+        pb: 7,
+        display: { xs: 'flex', md: 'none' },
+        mr: 1,
+        paddingBottom: '100px'
+      }}
+      ref={ref}
+    >
       <CssBaseline />
       <Paper
         sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
