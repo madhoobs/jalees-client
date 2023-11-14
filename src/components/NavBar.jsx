@@ -11,10 +11,10 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
-
-const settings = ['Account', 'My Dependants']
+import { useNavigate } from 'react-router-dom'
 
 const NavBar = ({ user, handleLogOut }) => {
+  let navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
 
@@ -27,6 +27,16 @@ const NavBar = ({ user, handleLogOut }) => {
   }
 
   const handleCloseUserMenu = () => {
+    setAnchorElUser(null)
+  }
+
+  const handleClick = (event) => {
+    console.log(event.target.innerText)
+    if (event.target.innerText === 'Account') {
+      navigate('/account')
+    } else if (event.target.innerText === 'My Dependants') {
+      navigate('/account/dependants')
+    }
     setAnchorElUser(null)
   }
 
@@ -55,11 +65,12 @@ const NavBar = ({ user, handleLogOut }) => {
           open={Boolean(anchorElUser)}
           onClose={handleCloseUserMenu}
         >
-          {settings.map((setting) => (
-            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">{setting}</Typography>
-            </MenuItem>
-          ))}
+          <MenuItem key="account" onClick={handleClick}>
+            <Typography textAlign="center">Account</Typography>
+          </MenuItem>
+          <MenuItem key="dependants" onClick={handleClick}>
+            <Typography textAlign="center">My Dependants</Typography>
+          </MenuItem>
           <MenuItem key="logout" onClick={handleLogOut}>
             <Typography textAlign="center">Logout</Typography>
           </MenuItem>
@@ -85,7 +96,8 @@ const NavBar = ({ user, handleLogOut }) => {
       <Button
         key="register"
         href="/register"
-        sx={{ my: 2, color: '#222222', display: 'block' }}
+        sx={{ my: 2, display: 'block' }}
+        variant="outlined"
       >
         Register
       </Button>

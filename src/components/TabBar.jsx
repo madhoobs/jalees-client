@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
 import BottomNavigation from '@mui/material/BottomNavigation'
@@ -10,7 +11,8 @@ import {
 } from '@mui/icons-material'
 import Paper from '@mui/material/Paper'
 
-const TabBar = () => {
+const TabBar = ({ user }) => {
+  let navigate = useNavigate()
   const [value, setValue] = React.useState('home')
   const ref = React.useRef(null)
 
@@ -36,6 +38,22 @@ const TabBar = () => {
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue)
+            if (newValue === 'profile' && user) {
+              // Navigate to profile
+              navigate('/account')
+            } else if (newValue === 'history' && user) {
+              // Navigate to sessions history
+              navigate('/account/sessions')
+            } else if (
+              // Navigate to login page if not logged in
+              !user &&
+              (newValue === 'profile' || newValue === 'history')
+            ) {
+              navigate('/login')
+            } else {
+              // Navigate to home page
+              navigate('/')
+            }
           }}
         >
           <BottomNavigationAction
