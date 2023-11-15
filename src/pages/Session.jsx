@@ -23,6 +23,7 @@ const Session = () => {
     if (!token) {
       navigate('/login')
     }
+
     const handleSession = async () => {
       const data = await GetSession(searchParams.get('id'))
       setSession(data)
@@ -30,17 +31,20 @@ const Session = () => {
         childrenNames = `${childrenNames} ${child.name},`
       })
       childrenNames = childrenNames.slice(0, -1)
+    }
 
+    const handleReview = async () => {
       // Get review details
       const checkReview = await GetSessionReview(searchParams.get('id'))
-      console.log(checkReview)
       if (checkReview) {
         setReviewed(true)
         setReview(checkReview)
       }
     }
+
     handleSession()
-  }, [session, review])
+    handleReview()
+  }, [session])
 
   const onClick = (e) => {
     navigate('/review/add', {
