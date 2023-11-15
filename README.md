@@ -44,6 +44,7 @@ This project is built using MERN stack.
 
 ## Future Work
 
+- Improve UI/UX
 - Develop mobile app version
 - Translate to Arabic
 - Add Scheduling: avoid conflicts in time when booking sessions
