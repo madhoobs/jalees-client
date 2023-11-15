@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ViewProfile } from '../services/Auth'
 import { Typography } from '@mui/material'
+import { GetChildren } from '../services/Child'
 
-const Profile = ({ user }) => {
+const Children = ({ user }) => {
   let navigate = useNavigate()
-  const [profile, setProfile] = useState(null)
+  const [children, setChildren] = useState(null)
 
   const handleLogOut = () => {
     //Reset all auth related state and clear localStorage
@@ -15,16 +15,16 @@ const Profile = ({ user }) => {
   }
 
   useEffect(() => {
-    const handleProfile = async () => {
-      const data = await ViewProfile(user.username)
-      setProfile(data)
+    const handleChildren = async () => {
+      const data = await GetChildren()
+      setChildren(data)
     }
-    handleProfile()
-  }, [profile])
+    handleChildren()
+  }, [children])
 
-  return profile ? (
+  return children ? (
     <div>
-      {profile.username}
+      {children.username}
       <Link to={'/account/sessions'}>Sessions History</Link>
       <Link key="logout" onClick={handleLogOut}>
         Logout
@@ -33,4 +33,4 @@ const Profile = ({ user }) => {
   ) : null
 }
 
-export default Profile
+export default Children

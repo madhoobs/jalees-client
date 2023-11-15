@@ -26,8 +26,11 @@ const Caregiver = () => {
   })
 
   const onClick = (e) => {
-    // Navigating to selected Caregiver page
-    navigate('/session/new')
+    navigate('/session/new', {
+      state: {
+        caregiver: caregiver._id
+      }
+    })
   }
 
   return caregiver ? (

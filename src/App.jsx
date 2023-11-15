@@ -11,6 +11,11 @@ import Profile from './pages/Profile.jsx'
 import { CheckSession } from './services/Auth'
 import './App.css'
 import NewSessionForm from './pages/NewSessionForm.jsx'
+import Session from './pages/Session.jsx'
+import AllSessions from './pages/AllSessions.jsx'
+import About from './pages/About.jsx'
+import Contact from './pages/Contact.jsx'
+import NewReview from './pages/NewReview.jsx'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -40,11 +45,19 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register setUser={setUser} />} />
           <Route path="/account" element={<Profile user={user} />} />
+          <Route
+            path="/account/sessions"
+            element={<AllSessions user={user} />}
+          />
           <Route path="/caregiver" element={<Caregiver />} />
+          <Route path="/sessions" element={<Session />} />
           <Route path="/session/new" element={<NewSessionForm user={user} />} />
+          <Route path="/review/add" element={<NewReview user={user} />} />
         </Routes>
       </main>
       <Footer />

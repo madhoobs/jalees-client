@@ -14,29 +14,52 @@ import {
 } from '@mui/material'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
+import { useLocation, useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
+import { GetChildren } from '../services/Child'
+import { CreateSession } from '../services/Session'
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />
 
-const NewSessionForm = () => {
+const NewSessionForm = ({ user }) => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const [children, setChildren] = useState([])
   const [formValues, setFormValues] = useState({
-    username: '',
-    email: '',
-    plainPassword: '',
-    firstName: '',
-    lastName: ''
+    children: [],
+    place: '',
+    datetime: dayjs().add(8, 'hour'),
+    duration: ''
   })
+
+  useEffect(() => {
+    const handleChildren = async () => {
+      const data = await GetChildren()
+      setChildren(data)
+    }
+    handleChildren()
+  }, [children])
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async (e) => {}
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    let newSession = { ...formValues }
+    newSession.caregiver = location.state.caregiver
+    newSession.duration = parseInt(formValues.duration)
+    newSession.date = dayjs()
+    newSession.time = dayjs()
+    let createdSession = await CreateSession(newSession)
+    navigate(`/sessions?id=${createdSession._id}`)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -55,12 +78,12 @@ const NewSessionForm = () => {
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Autocomplete
+              {/* <Autocomplete
                 multiple
                 id="checkboxes-tags-demo"
-                options={testChildrenArray}
+                options={children}
                 disableCloseOnSelect
-                getOptionLabel={(option) => option.name}
+                getOptionLabel={(option) => option._id}
                 renderOption={(props, option, { selected }) => (
                   <li {...props}>
                     <Checkbox
@@ -68,6 +91,7 @@ const NewSessionForm = () => {
                       checkedIcon={checkedIcon}
                       style={{ marginRight: 8 }}
                       checked={selected}
+                      value={option._id}
                     />
                     {option.name}
                   </li>
@@ -80,26 +104,25 @@ const NewSessionForm = () => {
                     placeholder="Select Children for this session"
                   />
                 )}
-              />
+              /> */}
             </Grid>
             <Grid item xs={12}>
               <TextField
-                autoComplete="place"
                 name="place"
                 required
                 fullWidth
                 id="place"
                 label="Session Place"
-                autoFocus
                 onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
+                  name="datetime"
                   label="Session Date & Time"
-                  defaultValue={dayjs()}
-                  minDateTime={dayjs()}
+                  defaultValue={dayjs().add(8, 'hour')}
+                  minDateTime={dayjs().add(3, 'hour')}
                   format="DD/MM/YYYY hh:mm A"
                 />
               </LocalizationProvider>
@@ -110,18 +133,9 @@ const NewSessionForm = () => {
                 fullWidth
                 name="duration"
                 label="Duration"
-                type="duration"
+                type="number"
                 id="duration"
-                autoComplete="duration"
                 onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={
-                  <Checkbox value="allowExtraEmails" color="primary" required />
-                }
-                label="I agree to the Terms & Conditions."
               />
             </Grid>
           </Grid>
@@ -139,12 +153,5 @@ const NewSessionForm = () => {
     </Container>
   )
 }
-
-const testChildrenArray = [
-  { name: 'Hadi' },
-  { name: 'Yasmeen' },
-  { name: 'Taim' },
-  { name: 'Mutayam' }
-]
 
 export default NewSessionForm
