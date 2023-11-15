@@ -19,6 +19,11 @@ const AllSessions = () => {
   let navigate = useNavigate()
 
   useEffect(() => {
+    // Check user session
+    const token = localStorage.getItem('token')
+    if (!token) {
+      navigate('/login')
+    }
     const handleSessions = async () => {
       const data = await GetChildrenSessions()
       setSessions(data)

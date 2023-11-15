@@ -18,6 +18,11 @@ const Session = () => {
   let childrenNames = ''
 
   useEffect(() => {
+    // Check user session
+    const token = localStorage.getItem('token')
+    if (!token) {
+      navigate('/login')
+    }
     const handleSession = async () => {
       const data = await GetSession(searchParams.get('id'))
       setSession(data)

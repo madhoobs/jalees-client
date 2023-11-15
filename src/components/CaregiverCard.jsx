@@ -30,6 +30,11 @@ const CaregiverCard = ({ caregiver, onClick }) => {
             {caregiver.bio}
           </Typography>
         </CardContent>
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            <b>{caregiver.rate}</b> BHD/hr
+          </Typography>
+        </CardContent>
         <CardActions disableSpacing>
           <CardActions>
             <Button size="small" onClick={onClick} id={caregiver._id}>

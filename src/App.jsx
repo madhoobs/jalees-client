@@ -16,6 +16,9 @@ import AllSessions from './pages/AllSessions.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import NewReview from './pages/NewReview.jsx'
+import Children from './pages/Children.jsx'
+import NewChild from './pages/NewChild.jsx'
+import EditChild from './pages/EditChild.jsx'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -50,6 +53,12 @@ const App = () => {
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register setUser={setUser} />} />
           <Route path="/account" element={<Profile user={user} />} />
+          <Route
+            path="/account/dependants"
+            element={<Children user={user} />}
+          />
+          <Route path="/dependant/add" element={<NewChild user={user} />} />
+          <Route path="/dependant/edit" element={<EditChild user={user} />} />
           <Route
             path="/account/sessions"
             element={<AllSessions user={user} />}

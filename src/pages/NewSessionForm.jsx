@@ -10,7 +10,8 @@ import {
   CssBaseline,
   FormControlLabel,
   Button,
-  Link
+  Link,
+  InputAdornment
 } from '@mui/material'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
@@ -127,7 +128,7 @@ const NewSessionForm = ({ user }) => {
                 />
               </LocalizationProvider>
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 required
                 fullWidth
@@ -135,6 +136,11 @@ const NewSessionForm = ({ user }) => {
                 label="Duration"
                 type="number"
                 id="duration"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">hours</InputAdornment>
+                  )
+                }}
                 onChange={handleChange}
               />
             </Grid>

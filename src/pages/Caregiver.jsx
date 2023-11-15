@@ -18,6 +18,11 @@ const Caregiver = () => {
   let navigate = useNavigate()
 
   useEffect(() => {
+    // Check user session
+    const token = localStorage.getItem('token')
+    if (!token) {
+      navigate('/login')
+    }
     const handleCaregiver = async () => {
       const data = await GetCaregiver(searchParams.get('id'))
       setCaregiver(data)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Container,
   Typography,
@@ -31,6 +31,14 @@ const NewReview = ({ user }) => {
     await AddReview(review)
     navigate(`/sessions?id=${location.state.session}`)
   }
+
+  useEffect(() => {
+    // Check user session
+    const token = localStorage.getItem('token')
+    if (!token) {
+      navigate('/login')
+    }
+  }, [])
 
   return (
     <Container>

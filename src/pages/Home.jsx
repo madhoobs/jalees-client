@@ -20,7 +20,7 @@ const Home = () => {
       setCaregivers(data)
     }
     handleCaregivers()
-  })
+  }, [caregivers])
 
   const onClick = (e) => {
     // Navigating to selected Caregiver page
