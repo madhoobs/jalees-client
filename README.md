@@ -28,6 +28,8 @@
   - Book a babysitting session
 - See babysitter reviews and add a review on session
 
+Progress shown in [Trello workspace](https://trello.com/b/3N7fD2Q9/mvp)
+
 ## Technologies
 
 This project is built using MERN stack.
