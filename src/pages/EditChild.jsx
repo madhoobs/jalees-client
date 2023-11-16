@@ -6,7 +6,7 @@ import { GetChild } from '../services/Child'
 
 const EditChild = ({ user }) => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [form, setForm] = useState(null)
+  const [child, setChild] = useState(null)
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -17,19 +17,18 @@ const EditChild = ({ user }) => {
     }
     const handleChild = async () => {
       const child = await GetChild(searchParams.get('id'))
-      setForm(<ChildForm user={user} child={child} />)
-      console.log(child)
+      setChild(child)
     }
     handleChild()
-  }, [form])
+  }, [])
 
-  return form ? (
+  return child ? (
     <Container>
       <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
         <Typography variant="h4" gutterBottom>
           Edit Child Information
         </Typography>
-        {form}
+        <ChildForm user={user} child={child} />
       </Paper>
     </Container>
   ) : null
