@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://i.ibb.co/9WSFdvz/logo-01.png" alt="Jalees" width="150" />
+  <img src="https://i.ibb.co/NTkKcfQ/logo-app.png" alt="Jalees" width="150" />
   <br>
   Jalees
   <br>
