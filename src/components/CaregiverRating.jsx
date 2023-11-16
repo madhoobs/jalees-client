@@ -20,9 +20,9 @@ const CaregiverRating = ({ caregiver }) => {
   return (
     <Box
       sx={{
-        width: 200,
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft: -0.5
       }}
     >
       <Rating
@@ -30,9 +30,10 @@ const CaregiverRating = ({ caregiver }) => {
         value={rating.rating}
         precision={0.5}
         readOnly
+        size="small"
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
-      <Typography level="title-sm">&nbsp;({rating.reviews})</Typography>
+      <Typography component="p">&nbsp;({rating.reviews})</Typography>
     </Box>
   )
 }

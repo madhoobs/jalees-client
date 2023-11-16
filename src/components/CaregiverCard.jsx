@@ -8,6 +8,7 @@ import CardActions from '@mui/material/CardActions'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import CaregiverRating from '../components/CaregiverRating'
+import { Box, IconButton } from '@mui/material'
 
 const CaregiverCard = ({ caregiver, onClick }) => {
   return (
@@ -21,18 +22,20 @@ const CaregiverCard = ({ caregiver, onClick }) => {
               {caregiver.name.charAt(0)}
             </Avatar>
           }
-          title={caregiver.name}
-          subheader="Caregiver"
+          action={
+            <Box align="center" sx={{ mx: 3 }}>
+              <Typography variant="h6" color="primary">
+                <b>{caregiver.rate}</b>
+              </Typography>
+              <Typography variant="p">BD/hr</Typography>
+            </Box>
+          }
+          title={<Typography variant="h7">{caregiver.name}</Typography>}
+          subheader={<CaregiverRating caregiver={caregiver._id} />}
         />
-        <CaregiverRating caregiver={caregiver._id} />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             {caregiver.bio}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            <b>{caregiver.rate}</b> BHD/hr
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
