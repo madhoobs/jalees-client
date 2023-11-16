@@ -55,12 +55,7 @@ const Session = () => {
   }
 
   let reviewSection = reviewed ? (
-    <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
-      <Typography variant="h4" component="h1" gutterBottom>
-        Session Details
-      </Typography>
-      <Typography variant="h5" component="h2" gutterBottom></Typography>
-      <Divider sx={{ margin: '25px' }} />
+    <Box>
       <Typography component="p" gutterBottom>
         <b>Rating:</b>{' '}
         <Rating
@@ -74,7 +69,7 @@ const Session = () => {
       <Typography component="p" gutterBottom>
         <b>Comment:</b> {review.comment}
       </Typography>
-    </Container>
+    </Box>
   ) : (
     <Button variant="contained" size="large" onClick={onClick}>
       Add a Review
@@ -104,9 +99,9 @@ const Session = () => {
         <Typography component="p" gutterBottom>
           <b>Place:</b> {session.place}
         </Typography>
-        <Typography component="p" gutterBottom>
+        {/* <Typography component="p" gutterBottom>
           <b>Children:</b> {childrenNames}
-        </Typography>
+        </Typography> */}
         <Typography component="p" gutterBottom>
           <b>Duration:</b> {session.duration}
         </Typography>
@@ -114,6 +109,10 @@ const Session = () => {
           <b>Total Price:</b> BD {session.price}
         </Typography>
         <br />
+        <Divider sx={{ margin: '25px' }} />
+        <Typography variant="h5" component="h1" gutterBottom>
+          Session Review
+        </Typography>
         {reviewSection}
       </Container>
     </Box>

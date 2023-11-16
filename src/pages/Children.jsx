@@ -47,11 +47,10 @@ const Children = ({ user }) => {
   }, [children])
 
   return children ? (
-    <Container component="main" maxWidth="lg" sx={{ my: 10 }}>
+    <Container component="main" maxWidth="lg" sx={{ my: { xs: -5, md: 10 } }}>
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center'

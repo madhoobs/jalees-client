@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ViewProfile } from '../services/Auth'
+import { ViewProfile, CheckSession } from '../services/Auth'
 import {
   Container,
   Paper,
@@ -17,9 +17,10 @@ import ChildCareIcon from '@mui/icons-material/ChildCare'
 import HistoryIcon from '@mui/icons-material/History'
 import LogoutIcon from '@mui/icons-material/Logout'
 
-const Profile = ({ user }) => {
+const Profile = () => {
   let navigate = useNavigate()
   const [profile, setProfile] = useState(null)
+  const [user, setUser] = useState(null)
 
   const handleLogOut = () => {
     //Reset all auth related state and clear localStorage
@@ -31,15 +32,24 @@ const Profile = ({ user }) => {
   useEffect(() => {
     // Check user session
     const token = localStorage.getItem('token')
+
+    const checkToken = async () => {
+      const user = await CheckSession()
+      setUser(user)
+      handleProfile()
+    }
+
     if (!token) {
       navigate('/login')
+    } else {
+      checkToken()
     }
+
     const handleProfile = async () => {
       const data = await ViewProfile(user.username)
       setProfile(data)
     }
-    handleProfile()
-  }, [profile])
+  }, [user])
 
   return profile ? (
     <Container sx={{ padding: '30px', paddingBottom: '40px' }}>

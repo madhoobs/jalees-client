@@ -12,6 +12,13 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import { useNavigate } from 'react-router-dom'
+import {
+  Divider,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText
+} from '@mui/material'
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 
 const NavBar = ({ user, handleLogOut }) => {
   let navigate = useNavigate()
@@ -35,6 +42,8 @@ const NavBar = ({ user, handleLogOut }) => {
       navigate('/account')
     } else if (event.target.innerText === 'My Dependants') {
       navigate('/account/dependants')
+    } else if (event.target.innerText === 'Sessions History') {
+      navigate('/account/sessions')
     }
     setAnchorElUser(null)
   }
@@ -67,11 +76,18 @@ const NavBar = ({ user, handleLogOut }) => {
           <MenuItem key="account" onClick={handleClick}>
             <Typography textAlign="center">Account</Typography>
           </MenuItem>
+          <MenuItem key="history" onClick={handleClick}>
+            <Typography textAlign="center">Sessions History</Typography>
+          </MenuItem>
           <MenuItem key="dependants" onClick={handleClick}>
             <Typography textAlign="center">My Dependants</Typography>
           </MenuItem>
+          <Divider />
           <MenuItem key="logout" onClick={handleLogOut}>
-            <Typography textAlign="center">Logout</Typography>
+            <ListItemIcon>
+              <LogoutOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
           </MenuItem>
         </Menu>
       </Box>
